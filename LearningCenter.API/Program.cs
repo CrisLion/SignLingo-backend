@@ -12,13 +12,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Dependency Injection
-builder.Services.AddScoped<ITutorialInfrastructure, TutorialMySQLInfrastructure>();
+builder.Services.AddScoped<ITutorialInfrastructure, TutorialOracleInfrastructure>();
 
 //Connection to MySQL
 var connectionString = builder.Configuration.GetConnectionString("learningCenterConnection");
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
 
-builder.Services.AddDbContext<LearningCenterDBContext>(
+builder.Services.AddDbContext<SignLingoDbContext>(
     dbContextOptions =>
     {
         dbContextOptions.UseMySql(connectionString,
@@ -33,7 +33,7 @@ builder.Services.AddDbContext<LearningCenterDBContext>(
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
-using (var context = scope.ServiceProvider.GetService<LearningCenterDBContext>())
+using (var context = scope.ServiceProvider.GetService<SignLingoDbContext>())
 {
     context.Database.EnsureCreated();
 }
