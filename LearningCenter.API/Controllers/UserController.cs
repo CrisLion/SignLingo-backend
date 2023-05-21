@@ -11,43 +11,43 @@ namespace LearningCenter.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TutorialController : ControllerBase
+    public class UserController : ControllerBase
     {
-
-        private ITutorialInfrastructure _tutorialInfrastructure;
         
-        public TutorialController(ITutorialInfrastructure tutorialInfrastructure)
+        private IUserInfrastructure _userInfrastructure;
+
+        public UserController(IUserInfrastructure userInfrastructure)
         {
-            this._tutorialInfrastructure = tutorialInfrastructure;
+            _userInfrastructure = userInfrastructure;
         }
         
-        // GET: api/Tutorial
-        [HttpGet(Name = "GetTutorial")]
-        public IEnumerable<Tutorial> Get()
+        // GET: api/User
+        [HttpGet(Name = "GetUser")]
+        public IEnumerable<User> Get()
         {
-            return _tutorialInfrastructure.GetAll();
+            return _userInfrastructure.GetAll();
         }
 
-        // GET: api/Tutorial/5
-        [HttpGet("{id}", Name = "Get")]
+        // GET: api/User/5
+        [HttpGet("{id}", Name = "GetUserById")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Tutorial
+        // POST: api/User
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Tutorial/5
+        // PUT: api/User/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE: api/Tutorial/5
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

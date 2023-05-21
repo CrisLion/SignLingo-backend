@@ -13,6 +13,9 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection
 builder.Services.AddScoped<ITutorialInfrastructure, TutorialOracleInfrastructure>();
+builder.Services.AddScoped<ICountryInfrastructure, CountryMySQLInfrastructure>();
+builder.Services.AddScoped<ICityInfrastructure, CityMySQLInfrastructure>();
+builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
 
 //Connection to MySQL
 var connectionString = builder.Configuration.GetConnectionString("learningCenterConnection");

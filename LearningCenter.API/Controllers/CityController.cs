@@ -11,43 +11,43 @@ namespace LearningCenter.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TutorialController : ControllerBase
+    public class CityController : ControllerBase
     {
-
-        private ITutorialInfrastructure _tutorialInfrastructure;
         
-        public TutorialController(ITutorialInfrastructure tutorialInfrastructure)
+        private ICityInfrastructure _cityInfrastructure;
+
+        public CityController(ICityInfrastructure cityInfrastructure)
         {
-            this._tutorialInfrastructure = tutorialInfrastructure;
+            _cityInfrastructure = cityInfrastructure;
         }
         
-        // GET: api/Tutorial
-        [HttpGet(Name = "GetTutorial")]
-        public IEnumerable<Tutorial> Get()
+        // GET: api/City
+        [HttpGet(Name = "GetCity")]
+        public IEnumerable<City> Get()
         {
-            return _tutorialInfrastructure.GetAll();
+            return _cityInfrastructure.GetAll();
         }
 
-        // GET: api/Tutorial/5
-        [HttpGet("{id}", Name = "Get")]
+        // GET: api/City/5
+        [HttpGet("{id}", Name = "GetCityById")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Tutorial
+        // POST: api/City
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/Tutorial/5
+        // PUT: api/City/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE: api/Tutorial/5
+        // DELETE: api/City/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
