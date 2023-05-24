@@ -1,3 +1,4 @@
+using LearningCenter.Domain;
 using LearningCenter.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using LearningCenter.Infrastructure.Context;
@@ -16,6 +17,7 @@ builder.Services.AddScoped<ITutorialInfrastructure, TutorialOracleInfrastructure
 builder.Services.AddScoped<ICountryInfrastructure, CountryMySQLInfrastructure>();
 builder.Services.AddScoped<ICityInfrastructure, CityMySQLInfrastructure>();
 builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
+builder.Services.AddScoped<IUserDomain, UserDomain>();
 
 //Connection to MySQL
 var connectionString = builder.Configuration.GetConnectionString("learningCenterConnection");
