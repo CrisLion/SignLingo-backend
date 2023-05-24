@@ -36,7 +36,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<Country>().Property(country => country.Id).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Country>().Property(country => country.Country_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<Country>().HasMany(country => country.Cities)
-                                       .WithOne(city=> city.Country)
+                                       .WithOne()
                                        .HasForeignKey(city => city.CountryId )
                                        .IsRequired();
         
@@ -45,7 +45,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<City>().Property(city => city.Id).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<City>().Property(city => city.City_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<City>().HasMany(city => city.Users)
-                                      .WithOne(user=> user.City)
+                                      .WithOne()
                                       .HasForeignKey(user => user.CityId )
                                       .IsRequired();
         
@@ -55,6 +55,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.First_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Last_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Email).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<User>().Property(user => user.IsActive).IsRequired();
     }
 
 }
