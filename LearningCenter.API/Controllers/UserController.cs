@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LearningCenter.Domain;
 using LearningCenter.Infrastructure;
 using LearningCenter.Infrastructure.Models;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +16,12 @@ namespace LearningCenter.API.Controllers
     {
         
         private IUserInfrastructure _userInfrastructure;
+        private IUserDomain _userDomain;
 
-        public UserController(IUserInfrastructure userInfrastructure)
+        public UserController(IUserInfrastructure userInfrastructure, IUserDomain userDomain)
         {
             _userInfrastructure = userInfrastructure;
+            _userDomain = userDomain;
         }
         
         // GET: api/User
@@ -37,20 +40,23 @@ namespace LearningCenter.API.Controllers
 
         // POST: api/User
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User user)
         {
+            _userDomain.Save(user);
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] User user)
         {
+            _userDomain.Update(id, user);
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _userDomain.Delete(id);
         }
     }
 }
