@@ -55,7 +55,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.First_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Last_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Email).IsRequired().HasMaxLength(30);
-        modelBuilder.Entity<User>().Property(user => user.IsActive).IsRequired();
+        modelBuilder.Entity<User>().Property(user => user.IsActive).HasDefaultValue(true);
     }
 
 }
