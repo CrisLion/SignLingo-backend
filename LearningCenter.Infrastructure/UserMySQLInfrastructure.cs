@@ -17,6 +17,11 @@ public class UserMySQLInfrastructure : IUserInfrastructure
         return _signLingoDbContext.User.Where(user => user.IsActive).ToList();
     }
 
+    public User GetById(int id)
+    {
+        return _signLingoDbContext.User.Find(id);
+    }
+
     public bool Save(User user)
     {
         _signLingoDbContext.User.Add(user);
