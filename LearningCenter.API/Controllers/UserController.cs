@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LearningCenter.API.Request;
+using LearningCenter.API.Response;
 using LearningCenter.Domain;
 using LearningCenter.Infrastructure;
 using LearningCenter.Infrastructure.Models;
@@ -33,16 +35,44 @@ namespace LearningCenter.API.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}", Name = "GetUserById")]
-        public string Get(int id)
+        public UserResponse Get(int id)
         {
-            return "value";
+            var user = _userInfrastructure.GetById(id);
+            var userResponse = new UserResponse()
+            {
+                Id = user.Id,
+                First_Name = user.First_Name,
+                Last_Name = user.Last_Name,
+                Email = user.Email,
+                CityID = user.CityId
+            };
+
+            return userResponse;
         }
 
         // POST: api/User
         [HttpPost]
-        public void Post([FromBody] User user)
+        public void Post([FromBody] UserRequest userRequest)
         {
-            _userDomain.Save(user);
+
+            if (ModelState.IsValid)
+            {
+                //Temporal
+                var user = new User()
+                {
+                    First_Name = userRequest.First_Name,
+                    Last_Name = userRequest.Last_Name,
+                    Email = userRequest.Email,
+                    CityId = userRequest.City
+                };
+            
+                _userDomain.Save(user);
+            }
+            else
+            {
+                StatusCode(400);
+            }
+            
         }
 
         // PUT: api/User/5
