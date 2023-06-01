@@ -26,14 +26,14 @@ namespace LearningCenter.API.Controllers
             _userDomain = userDomain;
         }
         
-        // GET: api/User
+        // GET: api/LearningCenter.Domain.Test
         [HttpGet(Name = "GetUser")]
         public IEnumerable<User> Get()
         {
             return _userInfrastructure.GetAll();
         }
 
-        // GET: api/User/5
+        // GET: api/LearningCenter.Domain.Test/5
         [HttpGet("{id}", Name = "GetUserById")]
         public UserResponse Get(int id)
         {
@@ -50,7 +50,7 @@ namespace LearningCenter.API.Controllers
             return userResponse;
         }
 
-        // POST: api/User
+        // POST: api/LearningCenter.Domain.Test
         [HttpPost]
         public void Post([FromBody] UserRequest userRequest)
         {
@@ -75,14 +75,14 @@ namespace LearningCenter.API.Controllers
             
         }
 
-        // PUT: api/User/5
+        // PUT: api/LearningCenter.Domain.Test/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User user)
         {
             _userDomain.Update(id, user);
         }
 
-        // DELETE: api/User/5
+        // DELETE: api/LearningCenter.Domain.Test/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

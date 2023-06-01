@@ -19,7 +19,10 @@ public class UserMySQLInfrastructure : IUserInfrastructure
 
     public User GetById(int id)
     {
-        return _signLingoDbContext.User.Find(id);
+        var user = _signLingoDbContext.User.Find(id);
+        var city = _signLingoDbContext.City.Find(user.CityId);
+        user.city = city;
+        return user;
     }
 
     public bool Save(User user)

@@ -7,5 +7,7 @@ public class User
     public string Last_Name { get; set; }
     public string Email { get; set; }
     public int CityId { get; set; }
+    
+    public City city { get; set; }
     public  bool IsActive { get; set; }
 }
